@@ -35,6 +35,7 @@ h2 {
 }
 
 body{ /* O clamp, font-family e provavelmente outras coisas não funcionam direto no body direito, pois não inclui button, input e textarea.*/
+    display: flex;
     height: 100vh; /* View height, 100vh, ou seja, altura total da tela.*/
     /*width: 100vh;  O mesmo para o eixo horizontal.*/
     background: var(--background);
@@ -95,8 +96,8 @@ button > img
     width: 2rem;
 }
 
-button.outLined,
-.button.outLined {
+button.outlined,
+.button.outlined {
     background: var(--white);
     color: var(--blue);
     border: .2rem solid var(--blue);
