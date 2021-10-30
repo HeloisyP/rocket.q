@@ -20,6 +20,7 @@ html {
     --grey-blue: #A1B2CD;
     --grey-medium: #D3D9E2;
     --grey-light: #E5EAF1;
+    --grey-medium: #eaecf2;
     /* O padrão de 16px equivale a um (1) rem.
     1rem = 16px (Padrão) (User Agent) = 100% (User Agent)
     font-size: 100%
@@ -90,7 +91,7 @@ button:hover, .button:hover {
     filter: brightness(1.2); /* Dá uma espécie de "brilho", ele clareia.*/
 }
 
-button > img
+button > img,
 .button > img {
     margin-right: 1rem;
     width: 2rem;
