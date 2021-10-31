@@ -35,7 +35,7 @@ h2 {
     font-size: 2.8rem;
 }
 
-body{ /* O clamp, font-family e provavelmente outras coisas não funcionam direto no body direito, pois não inclui button, input e textarea.*/
+body { /* O clamp, font-family e provavelmente outras coisas não funcionam direto no body direito, pois não inclui button, input e textarea.*/
     display: flex;
     height: 100vh; /* View height, 100vh, ou seja, altura total da tela.*/
     /*width: 100vh;  O mesmo para o eixo horizontal.*/
@@ -103,6 +103,21 @@ button.outlined,
     color: var(--blue);
     border: .2rem solid var(--blue);
 }
+
+button.red,
+.button.red {
+    background: var(--red);
+    color: var(--white);
+}
+
+button.grey,
+.button.grey {
+    background: var(--grey-light);
+    color: var(--grey-dark);
+}
+
+/* Header */
+
 .content header {
     width: 80%;
     margin: 3.5rem auto;
