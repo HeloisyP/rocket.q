@@ -1,0 +1,28 @@
+{
+  "name": "rocket.q",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido para gerenciar perguntas anônimas de usuários direcionadas ao dono da página.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/heloisy.pimenta1/rocket.q.git"
+  },
+  "keywords": [],
+  "author": "HeloisyPQ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/heloisy.pimenta1/rocket.q/issues"
+  },
+  "homepage": "https://gitlab.com/heloisy.pimenta1/rocket.q#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.2",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
