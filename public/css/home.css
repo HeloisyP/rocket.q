@@ -27,16 +27,12 @@ main {
     /*O recomendado no curso é usar margin-top: -12rem; No navegado firefox, O texto do main ficou alinhado com a figura nessa configuração na data: 21/10/2021.*/
 }
 
-.marginCreatePass { /* Medida usada, verificar o home css e porque essa diferença.*/
-    grid-area: right;
-
-    display: flex;
-    align-items: center;
-    margin-top: -12rem;/*O recomendado no curso é usar margin-top: -12rem; No navegado firefox, O texto do main ficou alinhado com a figura nessa configuração na data: 21/10/2021 na página home, mas foi necessário colocar uma margin-top na página create-pass.*/
-}
-
 main .container {
     width: min(36.3rem, 100%);
+}
+
+main .marginCreatePass { /* Caso não use, o conteúdo ficaria em uma altura desconfortável, caso colocasse para todos iria dar problema no index.html, lá ficou alto, aqui, ao aumentar a tela no eixo y, o conteúdo desce.*/
+    margin-top: -12rem;
 }
 
 main h2 {
@@ -50,6 +46,17 @@ input {
     border: .2rem solid var(--grey-blue);
     padding: 0 1.6rem;
     outline: none;
+}
+
+/* Tirar as setinhas do botão*/
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
 }
 
 input, button, .button {
