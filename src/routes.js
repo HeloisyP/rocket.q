@@ -1,15 +1,15 @@
 const express = require('express')
 const questionController = require('./controllers/questionController')
+const roomController = require('./controllers/roomController')
 
 const routes = express.Router()
 
-routes.get('/', (req, res) => res.render("index", {page: 'enter-room'}))
-routes.get('/room', (req, res) => res.render("room"))
-routes.get('/create-pass', (req, res) => res.render("create-pass", {page: 'create-pass'}))
-
-routes.get('/room/:room/:question/:action', (req, res) => res.render("exemplo", {req}))
+routes.get('/', (req, res) => res.render("index"))
+routes.get('/create-pass', (req, res) => res.render("create-pass"))
+routes.get('/room/:room', (req, res) => res.render("room"))
 
 // Formato do dados capturados na modal
-routes.post('/room/:room/:question/:action', questionController.index)
+routes.post('/question/:room/:question/:action', questionController.index)
+routes.post('/create-room', roomController.create)
 
 module.exports = routes

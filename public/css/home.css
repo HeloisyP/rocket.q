@@ -31,8 +31,8 @@ main .container {
     width: min(36.3rem, 100%);
 }
 
-main .marginCreatePass { /* Caso não use, o conteúdo ficaria em uma altura desconfortável, caso colocasse para todos iria dar problema no index.html, lá ficou alto, aqui, ao aumentar a tela no eixo y, o conteúdo desce.*/
-    margin-top: -12rem;
+main.marginCreatePass { /* Caso não use, o conteúdo ficaria em uma altura desconfortável, caso colocasse para todos iria dar problema no index.html, lá ficou alto, aqui, ao aumentar a tela no eixo y, o conteúdo desce.*/
+     margin-top: -12rem;
 }
 
 main h2 {

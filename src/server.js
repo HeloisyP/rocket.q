@@ -2,7 +2,6 @@
 const express = require('express');
 const routes = require('./routes');
 const path = require('path');
-const exhbs = require("express-handlebars");
 
 //console.log(pages)
 
@@ -13,15 +12,16 @@ const server = express()
 server.use(express.urlencoded({extended: true}))
 
 // Utilizando os arquivos estáticos
-
-
- 
-// Configurar template engine
-server.engine('handlebars', exhbs());
-server.set('view engine','handlebars');
-
 server.set('views', path.join(__dirname, 'views'))
 server.use(express.static('public'))
+
+// Configurar template engine
+server.set('view engine', 'hbs')
+// server.engine('handlebars', exhbs());
+// server.set('view engine','handlebars');
+
+// server.set('views', path.join(__dirname, 'views'))
+// server.use(express.static('public'))
 // Register `hbs.engine` with the Express app.
 
 server.use(routes)
