@@ -1,8 +1,11 @@
-const Database = require("../database/config")
+const data = require("../database/config.js")
 
 module.exports = {
     async create(req, res) {
-        const db = await Database()
+        console.log('aqui corno')
+
+        const db = await data;
+        
         const pass = req.body.password
         let roomId;
 
@@ -12,17 +15,17 @@ module.exports = {
             roomId += Math.floor(Math.random() * 10).toString()  
         }
         console.log(parseInt(roomId))
-        console.log(pass)
+        console.log(pass)   
 
-        await db.run(`INSERT INTO rooms (
+        await db.run(`INSERT INTO room (
             id,
-            pass
+            password
         ) VALUES (
             ${parseInt(roomId)},
             ${pass}
         )`)
 
-        await db.close()
+        await db.close();
 
         res.redirect(`/room/${roomId}`)
     }
