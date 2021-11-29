@@ -1,22 +1,28 @@
 // Importar dependências. 
 const express = require('express');
-const routes = require('./routes');
 const path = require('path');
+// const {
+//     createPass, 
+//     createRoom
+// } = require('./pages')
+const pages = require('./pages')
 
 //console.log(pages)
 
-// Iniciando o express. 
+// Iniciando o express.
 const server = express()
 
+server
+
 // Utilizar body do req.
-server.use(express.urlencoded({extended: true}))
+.use(express.urlencoded({extended: true}))
 
 // Utilizando os arquivos estáticos
-server.set('views', path.join(__dirname, 'views'))
-server.use(express.static('public'))
+.set('views', path.join(__dirname, 'views'))
+.use(express.static('public'))
 
 // Configurar template engine
-server.set('view engine', 'hbs')
+.set('view engine', 'hbs')
 // server.engine('handlebars', exhbs());
 // server.set('view engine','handlebars');
 
@@ -24,6 +30,15 @@ server.set('view engine', 'hbs')
 // server.use(express.static('public'))
 // Register `hbs.engine` with the Express app.
 
-server.use(routes)
+.get('/', pages.renderIndex)
+.get('/create-pass', pages.createPass)
+// .get('/room/:room', roomMain)
 
-server.listen(3000, () => console.log("Rodadno",__dirname))
+// Salvar a senha com o post se der.
+.post('/create-room', pages.createRoom)
+.get('/room/:room', pages.renderRoom)
+.get('/teste', pages.Teste)
+.post('/question/:room/:question/:action', pages.questionController)
+
+// Start servidor
+.listen(3000, () => console.log("Rodadno",__dirname))

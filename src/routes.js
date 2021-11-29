@@ -10,6 +10,6 @@ routes.get('/room/:room', (req, res) => res.render("room"))
 
 // Formato do dados capturados na modal
 routes.post('/question/:room/:question/:action', questionController.index)
-routes.post('/create-room', roomController.create)
+routes.post('/create-room', createPass.createPass)
 
 module.exports = routes
