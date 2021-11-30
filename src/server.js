@@ -33,11 +33,11 @@ server
 .get('/', pages.renderIndex)
 .get('/create-pass', pages.createPass)
 // .get('/room/:room', roomMain)
-
-// Salvar a senha com o post se der.
 .post('/create-room', pages.createRoom)
 .get('/room/:room', pages.renderRoom)
 .get('/teste', pages.Teste)
+// Modal anda main
+.post('/question/create/:room', pages.createQuestion)
 .post('/question/:room/:question/:action', pages.questionController)
 
 // Start servidor

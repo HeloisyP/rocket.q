@@ -11,7 +11,8 @@ function execute(db) {
        CREATE TABLE IF NOT EXISTS question (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
-            read INT
+            read INT,
+            room INT
             );
         `);
 }

@@ -31,8 +31,8 @@
                 </a>
 
                 <div class="buttons">
-                    <div class="button outlined" id="room-id" data-id="323243">
-                        #323243
+                    <div class="button outlined" id="room-id" data-id="{{roomId}}">
+                        #{{roomId}}
                         <img src="/images/copy.svg" alt="Copiar número da sala"/>
                     </div>
                     <a href="#" class="button">
@@ -45,8 +45,9 @@
             <main>
                 <section id="question-form">
                     <h2>Faça sua pergunta</h2>
-                    <form action="">
+                    <form action="/question/create/{{roomId}}" method="POST">
                         <label class="sr-only" for-id="question">O que você quer perguntar?</label>
+                        <!-- Colocar forma de aumentar o text-area conforme o texto fica maior. -->
                         <textarea name="question" id="question" placeholder="O que você quer perguntar?"></textarea>
                         
                         <footer>
@@ -62,60 +63,15 @@
                 <section id="questions">
                     <h2 class="sr-only">Perguntas da comunidade</h2>
                     <div class="questions">
-
-                        <div class="question-wrapper">
-                            <div class="question-content">
-                                <div class="user">
-                                    <img src="/images/user.svg" alt="Avatar">
-                                </div>
-                                <div class="question">
-                                    <p>Qual é a diferença entre const, var e let no Js?</p>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="check" data-id="2">  
-                                    <img src="/images/check.svg" alt="Marcar como lida">
-                                    Marcar como lida
-                                </a>
-                                <a href="#" class="delete" data-id="2">
-                                    <img src="/images/trash.svg" alt="Excluir">
-                                    Excluir
-                                </a>
-                            </div>
-                        </div>
                         
+                        {{#each questions}}
                         <div class="question-wrapper">
                             <div class="question-content">
                                 <div class="user">
                                     <img src="/images/user.svg" alt="Avatar">
                                 </div>
                                 <div class="question">
-                                    <p>O que é GitHub?</p>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="check" data-id="3">  
-                                    <img src="/images/check.svg" alt="Marcar como lida">
-                                    Marcar como lida
-                                </a>
-                                <a href="#" class="delete" data-id="3">
-                                    <img src="/images/trash.svg" alt="Excluir">
-                                    Excluir
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="question-wrapper">
-                            <div class="question-content">
-                                <div class="user">
-                                    <img src="/images/user.svg" alt="Avatar">
-                                </div>
-                                <div class="question">
-                                    <p>Qual é a diferença entre const, var e let no Js? O que você precisa para atingir o próximo nível com maestria na NLW da Rocketseat? Vamos lá responder. 
-                                        Qual é a diferença entre const, var e let no Js? O que você precisa para atingir o próximo nível com maestria na NLW da Rocketseat? Vamos lá responder. 
-                                        Qual é a diferença entre const, var e let no Js? O que você precisa para atingir o próximo nível com maestria na NLW da Rocketseat? Vamos lá responder. 
-                                        Qual é a diferença entre const, var e let no Js? O que você precisa para atingir o próximo nível com maestria na NLW da Rocketseat? Vamos lá responder. 
-                                    </p>
+                                    <p>{{this.title}}</p>
                                 </div>
                             </div>
                             <div class="actions">
@@ -129,26 +85,13 @@
                                 </a>
                             </div>
                         </div>
+                        {{/each}}
 
-                        <div class="question-wrapper read">
-                            <div class="question-content">
-                                <div class="user">
-                                    <img src="/images/user.svg" alt="Avatar">
-                                </div>
-                                <div class="question">
-                                    <p>O que é TypeScript?</p>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="delete" data-id="1">
-                                    <img src="/images/trash.svg" alt="Excluir">
-                                    Excluir
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
+                    </div>                    
                 </section>
+
+                <footer class="footerRoom"> <button type="button" id="navigateToTop">Voltar para o topo <img class="roomPad" src="/images/goTop.svg" alt="Happy"></button> </footer>
+
             </main>
         </div>
 
@@ -169,6 +112,18 @@
 
                 </div>
             </div>
+
+        <script>
+            let buttonNavigateToTop = document.querySelector("#navigateToTop");
+
+            buttonNavigateToTop.addEventListener("click",()=>{
+                window.scrollTop(0,0);
+            })
+
+            /*function scrollTop() {
+                window.scrollTop(0);
+            };*/
+        </script>
         <script src="/scripts/main.js" defer type="module"></script>
     </body>
 </html>
