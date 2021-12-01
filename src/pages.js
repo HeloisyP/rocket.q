@@ -22,14 +22,18 @@ async Teste(req, res) {
         // let ret = Math.floor(Math.random() * (max - min)) + min;
         // console.log(ret);
 
-        console.log('Teste render index') 
+        // console.log('Teste render index') 
         
         const db = await Database;
-        //const rooms = await db.all('DELETE FROM question where id="4"')
-        const room = await db.all("SELECT * FROM room")
-        console.log(room)
-        const question = await db.all("SELECT * FROM question")
-        console.log(question)
+        // //const rooms = await db.all('DELETE FROM question where id="4"')
+        // const room = await db.all("SELECT * FROM room")
+        // console.log(room)
+        // const question = await db.all("SELECT * FROM question")
+        // console.log(question)
+
+        // const question = await db.all('INSERT INTO question (title,read,room) VALUES (" O que é um scrum master?", 1, 441899)');
+        // console.log(question)
+        
         return res.send(' Olá.');
 
     } catch (error) {
@@ -51,15 +55,16 @@ async Teste(req, res) {
 
 async renderRoom(req, res) {
     const roomId = req.params.room;
-    console.log('Teste render room')
         
     console.log(roomId)
 
     try {       
         const db = await Database;
-        const questions = await db.all(`SELECT * FROM question WHERE room = ${roomId}`)
-        console.log(questions)
-        return res.render("room", {roomId: roomId, questions: questions})
+        const questionsNotRead = await db.all(`SELECT * FROM question WHERE room = ${roomId} and read =0`)
+        const questionsRead = await db.all(`SELECT * FROM question WHERE room = ${roomId} and read=1`)
+        console.log(questionsRead)
+        console.log(questionsNotRead)
+        return res.render("room", {roomId: roomId, questionsNotRead: questionsNotRead, questionsRead: questionsRead})
     }
     catch (error) {
         console.log(error);
@@ -118,15 +123,33 @@ async createRoom(req, res) {
     // </SenhaExiste>
 },
 
-questionController(req, res) {
+async questionController(req, res) {
     const roomId = req.params.room;
     const questionId = req.params.question;
     const action = req.params.action;
     const password = req.body.password;
 
+    const db = await Database;
+    const getRoomId = await db.get(`SELECT * FROM room WHERE id = ${roomId}`);
+    console.log(getRoomId)
+    console.log(` Antes de colocar como lido room = ${roomId}, questionId = ${questionId}, action = ${action}, password = ${password}`)
+
     try {
-        console.log(`room = ${roomId}, questionId = ${questionId}, action = ${action}, password = ${password}`)
-        //return res.redirect(`/room/${roomId}/${questionId}/${action}`);
+        if(password == getRoomId.password){
+            if(action == "check"){
+                await db.run(`UPDATE question SET read = 1 WHERE id=${questionId}`);
+                console.log(' Depois de colocar como lido.')
+
+            }
+            else if(action == "delete") {
+                await db.run(`DELETE from question WHERE id=${questionId}`);
+                console.log(' Depois de colocar deletar.')
+            } 
+            return res.redirect(`/room/${roomId}`);
+        } else {
+            return res.send(' Errou a senha.');
+        }
+        
     } catch (error) {
          console.log(error);
     }
