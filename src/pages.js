@@ -105,7 +105,7 @@ async createRoom(req, res) {
     let roomExist = true;
 
     while(roomExist) {
-    console.log(' Função para testar se senha existe.')
+    console.log(' Função para testar se sala existe.')
 
     // Os valores 100000 e 999999 não vão ser utilizados.
     let min = Math.ceil(100000);
@@ -113,8 +113,8 @@ async createRoom(req, res) {
     roomId = Math.floor(Math.random() * (max - min)) + min;
     console.log(' Teste depois de setar roomId')
     console.log(roomId)
-    // Validação se já existe a senha inserida.
-    //<SenhaExiste?>
+    // Validação se já existe a sala inserida.
+    //<SalaExiste?>
     const db = await Database;
     const roomExistIds = await db.all("SELECT id FROM room")
 
@@ -138,7 +138,7 @@ async createRoom(req, res) {
             }
         }
     }
-    // </SenhaExiste>
+    // </SalaExiste>
 },
 
 async questionController(req, res) {
