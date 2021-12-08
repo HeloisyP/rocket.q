@@ -38,9 +38,9 @@
                 <div class="container">
                     <section>
                         <h2>Entre como participante</h2>
-                        <form action="">
-                            <label class="sr-only" for="room-id">Código da sala</label> <!--O sr-only faz com que não apareça, mas ainda poderá ser lido por leitores.-->
-                            <input type="number" id="room-id" placeholder="Código da sala"> <!-- Como tira essas setinhas do input? -->
+                        <form action="/enterRoom" method="POST"     >
+                            <label class="sr-only" for="roomid">Código da sala</label> <!--O sr-only faz com que não apareça, mas ainda poderá ser lido por leitores.-->
+                            <input type="number" name="roomid" id="roomid" placeholder="Código da sala"> <!-- Como tira essas setinhas do input? -->
                             <button>   
                             <img src="/images/enter-room.svg" alt="Entrar na sala">
                             Entrar na sala

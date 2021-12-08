@@ -53,6 +53,19 @@ async Teste(req, res) {
     }
 },
 
+enterRoom(req, res){
+    console.log(' Iniciando tentativa.')
+    const roomId = req.body.roomid;
+    console.log(roomId)
+
+    try {
+        return res.redirect(`/room/${roomId}`);
+    } catch (error) {
+        console.log(' Erro em index.hbs.')
+    }
+    
+},
+
 async renderRoom(req, res) {
     const roomId = req.params.room;
         
@@ -64,7 +77,12 @@ async renderRoom(req, res) {
         const questionsRead = await db.all(`SELECT * FROM question WHERE room = ${roomId} and read=1`)
         console.log(questionsRead)
         console.log(questionsNotRead)
-        return res.render("room", {roomId: roomId, questionsNotRead: questionsNotRead, questionsRead: questionsRead})
+        let hasQuestion = true;
+
+        if(questionsRead.length == 0 && questionsNotRead.length == 0) {
+            hasQuestion = false;
+        } 
+        return res.render("room", {roomId: roomId, questionsNotRead: questionsNotRead, questionsRead: questionsRead, hasQuestion: hasQuestion})
     }
     catch (error) {
         console.log(error);
@@ -128,6 +146,7 @@ async questionController(req, res) {
     const questionId = req.params.question;
     const action = req.params.action;
     const password = req.body.password;
+    //let correctPass = true;
 
     const db = await Database;
     const getRoomId = await db.get(`SELECT * FROM room WHERE id = ${roomId}`);
@@ -145,9 +164,14 @@ async questionController(req, res) {
                 await db.run(`DELETE from question WHERE id=${questionId}`);
                 console.log(' Depois de colocar deletar.')
             } 
-            return res.redirect(`/room/${roomId}`);
+            return res.redirect(`/room/${roomId}`)
+            //return res.render(`/room/${roomId}`, {correctPass: correctPass});
         } else {
-            return res.send(' Errou a senha.');
+            //return res.send(' Errou a senha.');
+            // correctPass=false;
+            // return res.render(`/room/${roomId}`,{correctPass: correctPass})
+            // Ver uma resposta ao usuário decente. Colocar para redirecionar para a rota room/${roomId}/wrongPass caso dê errado e pegar esse valor pelo req.params e colocar e tirar o display: none e colocar block em uma div na modal informando que a senha está errada.
+            return res.render("passIncorrect", {roomId: roomId})
         }
         
     } catch (error) {

@@ -19,7 +19,7 @@ server
 
 // Utilizando os arquivos estáticos
 .set('views', path.join(__dirname, 'views'))
-.use(express.static('public'))
+.use(express.static('public'))  
 
 // Configurar template engine
 .set('view engine', 'hbs')
@@ -34,6 +34,7 @@ server
 .get('/create-pass', pages.createPass)
 // .get('/room/:room', roomMain)
 .post('/create-room', pages.createRoom)
+.post('/enterRoom', pages.enterRoom)
 .get('/room/:room', pages.renderRoom)
 .get('/teste', pages.Teste)
 // Modal anda main

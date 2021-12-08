@@ -35,7 +35,7 @@
                         #{{roomId}}
                         <img src="/images/copy.svg" alt="Copiar número da sala"/>
                     </div>
-                    <a href="#" class="button">
+                    <a href="/create-pass" class="button">
                         <img src="/images/users-white.svg" alt="Criar uma sala"/>
                         Criar Sala
                     </a>
@@ -63,6 +63,9 @@
                 <section id="questions">
                     <h2 class="sr-only">Perguntas da comunidade</h2>
                     <div class="questions">
+
+                        {{#if hasQuestion}}
+
                         {{#each questionsNotRead}}
                         <div class="question-wrapper">
                             <div class="question-content">
@@ -105,12 +108,25 @@
                         </div>
                         {{/each}}  
 
+                        {{else}}
+
+                        <div class="noQuestion">
+                            <img src="/images/questionsNone.svg" alt=" Sem questões">
+
+                            <p class="">Nenhuma pergunta por aqui...</p>
+
+                            <p class="">Faça sua primeira pergunta e envie o <br>código de sala para outras pessoas</p>
+
+                        </div>
+
+                        {{/if}}
+
                     </div>                    
                 </section>
-
-                <footer class="footerRoom"> <button type="button" id="navigateToTop">Voltar para o topo <img class="roomPad" src="/images/goTop.svg" alt="Happy"></button> </footer>
-
             </main>
+            {{#if hasQuestion}}
+            <footer class="footerRoom"> <button type="button" id="navigateToTop">Voltar para o topo <img class="roomPad" src="/images/goTop.svg" alt="Happy"></button> </footer>
+            {{/if}}
         </div>
 
             <div class="modal-wrapper">
@@ -124,7 +140,7 @@
 
                         <div class="buttons">
                             <div class="button grey cancel">Cancelar</div>
-                            <button class="red">Sim, excluir</button>
+                            <button class="" id="submitPass"></button>
                         </div>
                     </form>
 
@@ -132,15 +148,20 @@
             </div>
 
         <script>
+
+            /* Trabalhar para que só apareça ao chegar ao fim da página.*/
             let buttonNavigateToTop = document.querySelector("#navigateToTop");
+            /*let correctPass = {{correctPass}}*/
 
             buttonNavigateToTop.addEventListener("click",()=>{
                 window.scrollTo(0,0);
-            })
+            });
 
-            /*function scrollTop() {
-                window.scrollTop(0);
-            };*/
+            /*if(correctPass == false) {
+                confirm(" É necessário preencher a senha corretamente.")
+            */
+
+            
         </script>
         <script src="/scripts/main.js" defer type="module"></script>
     </body>

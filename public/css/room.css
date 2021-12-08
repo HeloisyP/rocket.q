@@ -162,10 +162,42 @@ footer {
     padding-bottom: 3rem;
     justify-content: center;
     align-items: center;
+    margin-top: 2.4rem;
 }
 
 footer.footerRoom button{
     color: var(--blue);
     background-color: var(--white);
     
+}
+
+.noQuestion {
+    text-align: center;
+    justify-content:center;
+    margin-top: 5.2rem;
+}
+
+.noQuestion img{
+    max-width: 100%;
+    margin-bottom: 2.4rem;
+}
+
+.noQuestion p {
+    color: var(--black);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.noQuestion p + p{
+    color: var(--grey-blue);
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+
+    line-height: 2.4rem;
+
+    margin-top: 1.3rem;
 }
